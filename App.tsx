@@ -2,8 +2,10 @@ import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
 import {Demo} from './src/screens/Demo';
+import {CustomNotification} from './src/customVariants/CustomNotification';
 
 const Drawer = createDrawerNavigator();
+
 
 const App = () => {
   return (
