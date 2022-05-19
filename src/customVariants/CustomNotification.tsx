@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, StyleSheet, Text, Image} from 'react-native';
-import TickIcon from '../assets/Tick.png';
 import SmileyFace from '../assets/SmileyFace.png'
 import SurprisedFace from '../assets/SurprisedFace.png'
 
