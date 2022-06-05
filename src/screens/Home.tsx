@@ -95,3 +95,6 @@ const S = StyleSheet.create({
     justifyContent: 'flex-end',
   },
 });
+
+
+// "react-native-notificated": "^0.0.1-alpha.0",
