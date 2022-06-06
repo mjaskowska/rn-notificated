@@ -4,12 +4,33 @@ import {NavigationContainer} from '@react-navigation/native';
 import {Demo} from './src/screens/Demo';
 import {CustomNotification} from './src/customVariants/CustomNotification';
 import {interpolate} from 'react-native-reanimated';
+import { createNotifications, RotateInRotateOut } from 'react-native-notificated';
+
+const {NotificationsProvider} = createNotifications({
+  duration: 1000,
+  animationConfig: RotateInRotateOut,
+  notificationPosition: 'top',
+  defaultStylesSettings: {
+    globalConfig: {
+      defaultIconType: 'monochromatic',
+      borderType: 'accent'
+    },
+    successConfig: {
+      bgColor: 'limegreen',
+      accentColor: 'limegreen',
+      titleColor: 'white',
+      descriptionColor: 'white',
+      borderRadius: 2,
+    }
+  }
+})
 
 const Drawer = createDrawerNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
+      <NotificationsProvider />
       <Drawer.Navigator
         initialRouteName="Demo"
         screenOptions={{headerShown: false}}>
