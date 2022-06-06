@@ -4,12 +4,22 @@ import {NavigationContainer} from '@react-navigation/native';
 import {Demo} from './src/screens/Demo';
 import {CustomNotification} from './src/customVariants/CustomNotification';
 import {interpolate} from 'react-native-reanimated';
+import {createNotifications, FadeInFadeOut} from 'react-native-notificated'
 
 const Drawer = createDrawerNavigator();
+export const {notify, NotificationsProvider} = createNotifications({
+  animationConfig: FadeInFadeOut,
+  variants: {
+    totallyCustomEvent: {
+      component: CustomNotification
+    }
+  }
+})
 
 const App = () => {
   return (
     <NavigationContainer>
+      <NotificationsProvider />
       <Drawer.Navigator
         initialRouteName="Demo"
         screenOptions={{headerShown: false}}>

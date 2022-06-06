@@ -1,10 +1,11 @@
 import React from 'react';
-import {View, StyleSheet, Text, Image} from 'react-native';
+import {View, StyleSheet, Text, Image, ButtonProps} from 'react-native';
 import SmileyFace from '../assets/SmileyFace.png'
 import SurprisedFace from '../assets/SurprisedFace.png'
 
 type PropsType = {
   text: string
+  isAppjsAwesome: boolean
 };
 
 export const CustomNotification = (p: PropsType) => {
@@ -12,7 +13,7 @@ export const CustomNotification = (p: PropsType) => {
     <View style={S.container}>
       <View style={S.content}>
         <Text style={S.title}>{p.text}</Text>
-        <Image style={S.icon} source={SmileyFace} />
+        <Image style={S.icon} source={p.isAppjsAwesome ? SmileyFace : SurprisedFace} />
       </View>
     </View>
   );
