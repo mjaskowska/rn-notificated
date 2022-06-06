@@ -2,7 +2,7 @@ import React from 'react';
 import {Image, SafeAreaView, StyleSheet} from 'react-native';
 import {Button} from '../components/Button';
 import Logo from '../assets/rnn-logo.png';
-import {notify} from '../../App';
+import {MyAnimation, notify} from '../../App';
 import {RotateZIn} from 'react-native-notificated';
 
 export const Demo = () => {
@@ -14,7 +14,9 @@ export const Demo = () => {
         onPress={() =>
           notify('totallyCustomEvent', {
             params: {text: 'How you doin?', isAppjsAwesome: true},
-            config: {animationConfig: RotateZIn},
+            config: {
+              animationConfig: MyAnimation
+            }
           })
         }
       />

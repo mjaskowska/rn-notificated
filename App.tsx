@@ -4,11 +4,78 @@ import {NavigationContainer} from '@react-navigation/native';
 import {Demo} from './src/screens/Demo';
 import {CustomNotification} from './src/customVariants/CustomNotification';
 import {interpolate} from 'react-native-reanimated';
-import {createNotifications, FadeInFadeOut} from 'react-native-notificated'
+import {createNotifications, FadeInFadeOut, generateAnimationConfig} from 'react-native-notificated'
+
+export const MyAnimation = generateAnimationConfig({
+  animationConfigIn: {
+    type: 'timing',
+    config: {
+      duration: 2000,
+    }
+  },
+  transitionInStyles: progress => {
+    'worklet'
+
+    const translateX = interpolate(progress.value, [0,1], [-100, 0])
+    const translateY = interpolate(progress.value, [0,1], [-100, 0])
+
+    
+    return {
+      opacity: progress.value,
+      transform: [{translateX}, {translateY}]
+    }
+  },
+  transitionOutStyles: progress => {
+    'worklet'
+
+    const translateX = interpolate(progress.value, [0,1], [100, 0])
+    const translateY = interpolate(progress.value, [0,1], [600, 0])
+
+    
+    return {
+      opacity: progress.value,
+      transform: [{translateX}, {translateY}]
+    }
+  }
+})
+
+  export const AdvancedAnimation = generateAnimationConfig({
+    animationConfigIn: {
+      type: 'timing',
+      config: {
+        duration: 5000,
+      },
+    },
+    transitionInStyles: progress => {
+      'worklet';
+      const translateX = interpolate(progress.value, [0, 0.5, 1], [0, 50, 0]);
+      const translateY = interpolate(
+        progress.value,
+        [0, 0.25, 0.5, 0.8, 1],
+        [900, 0, 200, 100, 0],
+      );
+      const rotateZ = interpolate(progress.value, [0, 0.5, 1], [-20, -20, 0]);
+      const rotateY = interpolate(progress.value, [0, 1], [200, 20]);
+      const rotateX = interpolate(progress.value, [0, 1], [-200, 0]);
+      return {
+        scale: progress.value,
+        opacity: progress.value * 1.5,
+        transform: [
+          {translateY},
+          {translateX},
+          {perspective: 2500},
+          {rotateZ: `${rotateZ}deg`},
+          {rotateY: `${rotateY}deg`},
+          {rotateX: `${rotateX}deg`},
+        ],
+      };
+    },
+  });
 
 const Drawer = createDrawerNavigator();
 export const {notify, NotificationsProvider} = createNotifications({
-  animationConfig: FadeInFadeOut,
+  animationConfig: MyAnimation,
+  // animationConfig: AdvancedAnimation,
   variants: {
     totallyCustomEvent: {
       component: CustomNotification
