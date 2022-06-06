@@ -1,10 +1,10 @@
 import React from 'react';
 import {TouchableOpacity, View, Text, StyleSheet, Image} from 'react-native';
 
-export const CloseButton = () => {
+export const CloseButton = (p: {onPress: () => void}) => {
   return (
     <View style={S.container}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={p.onPress}>
         <Text>Close</Text>
       </TouchableOpacity>
     </View>
