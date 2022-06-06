@@ -2,6 +2,7 @@ import React from 'react';
 import {View, StyleSheet, Text, Image} from 'react-native';
 import SmileyFace from '../assets/SmileyFace.png'
 import SurprisedFace from '../assets/SurprisedFace.png'
+import { CloseButton } from '../components/CloseButton';
 
 type PropsType = {
   text: string
@@ -14,6 +15,7 @@ export const CustomNotification = (p: PropsType) => {
         <Text style={S.title}>{p.text}</Text>
         <Image style={S.icon} source={SmileyFace} />
       </View>
+      <CloseButton />
     </View>
   );
 };
@@ -35,7 +37,7 @@ const S = StyleSheet.create({
     alignItems: 'center'
   },
   title: {
-    color: 'white',
+    color: 'black',
     fontWeight: '700',
     textAlign: 'left',
     fontSize: 18,
