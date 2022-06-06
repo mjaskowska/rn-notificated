@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, Text, Image, ButtonProps} from 'react-native';
+import { useNotificationController } from 'react-native-notificated';
 import SmileyFace from '../assets/SmileyFace.png'
 import SurprisedFace from '../assets/SurprisedFace.png'
 import { CloseButton } from '../components/CloseButton';
@@ -10,13 +11,14 @@ type PropsType = {
 };
 
 export const CustomNotification = (p: PropsType) => {
+  const {remove}= useNotificationController()
   return (
     <View style={S.container}>
       <View style={S.content}>
         <Text style={S.title}>{p.text}</Text>
         <Image style={S.icon} source={p.isAppjsAwesome ? SmileyFace : SurprisedFace} />
       </View>
-      <CloseButton />
+      <CloseButton onPress={()=>remove()} />
     </View>
   );
 };
