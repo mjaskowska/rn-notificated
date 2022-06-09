@@ -1,11 +1,12 @@
 import React from 'react';
 import {TouchableOpacity, View, Text, StyleSheet, Image} from 'react-native';
+import Cross from '../assets/Cross.png';
 
 export const CloseButton = (p: {onPress?: () => void}) => {
   return (
     <View style={S.container}>
-      <TouchableOpacity onPress={p.onPress}>
-        <Text>Close</Text>
+      <TouchableOpacity onPress={() => p.onPress?.()}>
+        <Image source={Cross} />
       </TouchableOpacity>
     </View>
   );
