@@ -1,28 +1,24 @@
 import React from 'react';
 import {View, StyleSheet, Text, Image} from 'react-native';
-import {useNotificationController} from 'react-native-notificated';
 import {CloseButton} from '../components/CloseButton';
 import {EmojiIcon} from '../components/EmojiIcon';
 
 type PropsType = {
   text: string;
-  isAppjsAwesome: boolean;
 };
 
 export const CustomNotification = (p: PropsType) => {
-  const {remove} = useNotificationController();
   return (
     <View style={S.container}>
       <View style={[S.side, S.accentSide]}>
-        <EmojiIcon isAppjsAwesome={p.isAppjsAwesome} />
+        <EmojiIcon />
       </View>
       <View style={S.center}>
         <Text style={S.text}>{p.text}</Text>
       </View>
       <View style={S.side}>
-        <CloseButton onPress={remove} />
+        <CloseButton />
       </View>
-
       <View style={S.headerIconContainer}>
         <Text style={S.emojiText}>✌️</Text>
       </View>
