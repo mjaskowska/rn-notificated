@@ -1,57 +1,61 @@
 import React from 'react';
 import {View, StyleSheet, Text, Image} from 'react-native';
-import SmileyFace from '../assets/SmileyFace.png'
-import SurprisedFace from '../assets/SurprisedFace.png'
-import { CloseButton } from '../components/CloseButton';
+import {useNotificationController} from 'react-native-notificated';
+import {CloseButton} from '../components/CloseButton';
+import {EmojiIcon} from '../components/EmojiIcon';
 
 type PropsType = {
-  text: string
+  text: string;
+  isAppjsAwesome: boolean;
 };
 
 export const CustomNotification = (p: PropsType) => {
+  const {remove} = useNotificationController();
   return (
     <View style={S.container}>
-      <View style={S.content}>
-        <Text style={S.title}>{p.text}</Text>
-        <Image style={S.icon} source={SmileyFace} />
+      <View style={[S.side, S.accentSide]}>
+        <EmojiIcon isAppjsAwesome={p.isAppjsAwesome} />
       </View>
-      <CloseButton />
+      <View style={S.center}>
+        <Text style={S.text}>{p.text}</Text>
+      </View>
+      <View style={S.side}>
+        <CloseButton onPress={remove} />
+      </View>
+
+      <View style={S.headerIconContainer}>
+        <Text style={S.emojiText}>✌️</Text>
+      </View>
     </View>
   );
 };
 
 const S = StyleSheet.create({
   container: {
+    backgroundColor: '#0033CC',
     flexDirection: 'row',
-    padding: 20,
-    backgroundColor: '#a2ef89ed',
-    borderRadius: 40,
+    borderTopLeftRadius: 22,
+    borderBottomRightRadius: 22,
+    margin: 8,
+  },
+  headerIconContainer: {
+    position: 'absolute',
+    width: '100%',
+    top: -14,
+    left: 0,
     alignItems: 'center',
-    minHeight: 175,
-    borderColor: 'limegreen',
-    borderWidth: 2,
   },
-  content: {
-    marginLeft: 20,
-    flex: 1,
-    alignItems: 'center'
+  emojiText: {
+    fontSize: 24,
   },
-  title: {
-    color: 'black',
-    fontWeight: '700',
-    textAlign: 'left',
-    fontSize: 18,
-  },
-  text: {
-    color: 'white',
-    fontWeight: '500',
-    fontSize: 14,
-    textAlign: 'left',
-    marginTop: 6,
-  },
-  icon: {
-    width: 40,
-    height: 40,
-    marginTop: 20,
+  text: {padding: 22, color: 'white', fontWeight: '500'},
+  center: {flex: 1},
+  side: {backgroundColor: 'red'},
+  accentSide: {
+    backgroundColor: '#8CACFF',
+    paddingHorizontal: 14,
+    justifyContent: 'center',
+    borderTopLeftRadius: 22,
+    borderBottomRightRadius: 22,
   },
 });
