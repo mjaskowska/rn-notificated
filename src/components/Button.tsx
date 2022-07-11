@@ -4,7 +4,7 @@ import {RectButton, RectButtonProps} from 'react-native-gesture-handler';
 
 type ButtonPropsType = RectButtonProps & {
   label: string;
-  variant: 'success' | 'error' | 'info' | 'warning';
+  variant: 'success' | 'error' | 'info' | 'warning' | 'primary';
 };
 
 export const Button = ({variant, label, ...rest}: ButtonPropsType) => {
@@ -12,12 +12,15 @@ export const Button = ({variant, label, ...rest}: ButtonPropsType) => {
     if (variant === 'success') return S.successBtn;
     if (variant === 'error') return S.errorBtn;
     if (variant === 'warning') return S.warningBtn;
+    if (variant === 'primary') return S.primaryBtn;
     return S.infoBtn;
   };
 
   return (
     <RectButton {...rest} style={[styles(), S.baseBtn]}>
-      <Text style={S.label}>{label}</Text>
+      <Text style={variant === 'primary' ? S.blackLabel : S.label}>
+        {label}
+      </Text>
     </RectButton>
   );
 };
@@ -26,7 +29,7 @@ const S = StyleSheet.create({
   baseBtn: {
     marginHorizontal: 16,
     marginVertical: 8,
-    borderWidth: 2,
+    borderWidth: 1,
     borderRadius: 20,
     padding: 16,
   },
@@ -51,5 +54,15 @@ const S = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
     textAlign: 'center',
+  },
+  blackLabel: {
+    color: 'black',
+    fontWeight: '600',
+    fontSize: 16,
+    textAlign: 'center',
+  },
+  primaryBtn: {
+    borderColor: 'black',
+    backgroundColor: 'transparent',
   },
 });
